@@ -1,0 +1,65 @@
+/* Animasi simulasi pompa */
+
+/* baling-baling berputar */
+.pump-impeller {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pump-spin 0.7s linear infinite;
+}
+@keyframes pump-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* air mengalir di dalam pipa (garis putus-putus bergerak) */
+.pump-water {
+  stroke: #bae6fd;
+  stroke-width: 8;
+  stroke-dasharray: 14 12;
+  fill: none;
+  animation: pump-flow 0.6s linear infinite;
+}
+@keyframes pump-flow {
+  to {
+    stroke-dashoffset: -26;
+  }
+}
+
+/* motor bergetar halus saat menyala */
+.pump-motor-on {
+  animation: pump-shake 0.15s linear infinite;
+}
+@keyframes pump-shake {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.6px);
+  }
+}
+
+/* rumah pompa berkedip saat alarm */
+.pump-alarm {
+  animation: pump-blink 0.7s ease-in-out infinite;
+}
+@keyframes pump-blink {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* jarum pressure gauge bergerak halus */
+.pump-needle {
+  transition: transform 0.8s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pump-impeller,
+  .pump-water,
+  .pump-motor-on,
+  .pump-alarm {
+    animation: none;
+  }
+}
